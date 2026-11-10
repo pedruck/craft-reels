@@ -1,0 +1,154 @@
+{
+ "template": "explainer",
+ "chaves": [
+  "agentes",
+  "coordenador",
+  "especializados",
+  "código",
+  "testar"
+ ],
+ "cenas": [
+  {
+   "at": 0,
+   "titulo": "IDE *open source*",
+   "visual": {
+    "type": "fluxo",
+    "forma": "hub",
+    "nos": [
+     {
+      "icone": "🧑‍💻",
+      "texto": "Você",
+      "at": "IDE"
+     },
+     {
+      "icone": "🤖",
+      "texto": "Agente",
+      "at": "vários"
+     },
+     {
+      "icone": "🤖",
+      "texto": "Agente",
+      "at": "agentes"
+     },
+     {
+      "icone": "🤖",
+      "texto": "Agente",
+      "at": "trabalhando"
+     }
+    ]
+   }
+  },
+  {
+   "at": "Orca",
+   "titulo": "Essa é a *Orca*",
+   "visual": {
+    "type": "logo",
+    "logo": "orca",
+    "at": "Orca"
+   }
+  },
+  {
+   "at": "pedir",
+   "titulo": "Agente *sozinho*",
+   "visual": {
+    "type": "lista",
+    "items": [
+     {
+      "icone": "😵",
+      "texto": "Se *perde*",
+      "at": "perder"
+     },
+     {
+      "icone": "📉",
+      "texto": "Qualidade *menor*",
+      "at": "inferior"
+     }
+    ]
+   }
+  },
+  {
+   "at": "configurar",
+   "titulo": "Um *coordenador*",
+   "visual": {
+    "type": "fluxo",
+    "forma": "linha",
+    "nos": [
+     {
+      "icone": "🧭",
+      "texto": "Coordena",
+      "at": "coordenador"
+     },
+     {
+      "icone": "🤖",
+      "texto": "Especialistas",
+      "at": "delegar",
+      "destaque": true
+     }
+    ]
+   }
+  },
+  {
+   "at": "design",
+   "titulo": "Uma *parte* cada",
+   "visual": {
+    "type": "lista",
+    "items": [
+     {
+      "icone": "🎨",
+      "texto": "Front-end",
+      "at": "design"
+     },
+     {
+      "icone": "🧩",
+      "texto": "Outra *parte*",
+      "at": "dependente"
+     },
+     {
+      "icone": "🧪",
+      "texto": "Revisa e *testa*",
+      "at": "revisar"
+     }
+    ]
+   }
+  },
+  {
+   "at": "gerenciando",
+   "titulo": "Ele *verifica*",
+   "visual": {
+    "type": "lista",
+    "items": [
+     {
+      "icone": "🧭",
+      "texto": "Gerencia *tudo*",
+      "at": "gerenciando"
+     },
+     {
+      "icone": "✅",
+      "texto": "Confere as *entregas*",
+      "at": "entregas"
+     }
+    ]
+   }
+  },
+  {
+   "at": "orquestração",
+   "titulo": "Tudo no *código*",
+   "visual": {
+    "type": "foto",
+    "img": "img/diffs.jpg",
+    "barra": "Orca · diff",
+    "logo": "orca",
+    "credito": "imagem: github.com/stablyai/orca · MIT"
+   }
+  },
+  {
+   "at": "interessante",
+   "titulo": "Vale *conhecer*",
+   "visual": {
+    "type": "logo",
+    "logo": "orca",
+    "at": "interessante"
+   }
+  }
+ ]
+}

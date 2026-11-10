@@ -1,0 +1,94 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "cenas.json — split",
+ "description": "Visual em cima (print numa janela, código, lista…), a pessoa embaixo, legenda abaixo do queixo. Para mostrar uma ferramenta ou um passo a passo.",
+ "type": "object",
+ "required": [
+  "cenas"
+ ],
+ "properties": {
+  "template": {
+   "const": "split"
+  },
+  "chaves": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "3–8 palavras da legenda que saem destacadas (nomes de produto entram sozinhos)"
+  },
+  "logos": {
+   "description": "\"auto\" (padrão), lista de chaves do catálogo, ou false"
+  },
+  "cenas": {
+   "type": "array",
+   "minItems": 1,
+   "description": "uma cena a cada 5–15 s; a primeira começa em 0",
+   "items": {
+    "type": "object",
+    "required": [
+     "at",
+     "titulo"
+    ],
+    "properties": {
+     "at": {
+      "description": "quando: segundos no vídeo cortado, ou palavra falada (\"palavra\", \"palavra#2\", \"palavra+0.3\", \"duas palavras\")",
+      "type": [
+       "number",
+       "string"
+      ]
+     },
+     "titulo": {
+      "type": "string",
+      "description": "1–4 palavras; UMA entre *asteriscos* sai em mono, na cor de destaque, entre chaves; cabe ~20 caracteres"
+     },
+     "visual": {
+      "type": "object",
+      "description": "um visual: lista | fluxo | grade | compare | logo | foto | contador | codigo | terminal (formatos em templates/VISUAIS.md)",
+      "required": [
+       "type"
+      ],
+      "properties": {
+       "type": {
+        "enum": [
+         "lista",
+         "fluxo",
+         "grade",
+         "compare",
+         "logo",
+         "foto",
+         "contador",
+         "codigo",
+         "terminal"
+        ]
+       }
+      }
+     },
+     "passo": {
+      "type": "string",
+      "description": "opcional: selo curto acima do visual, ex. \"passo 1\""
+     }
+    }
+   }
+  }
+ },
+ "examples": [
+  {
+   "template": "split",
+   "cenas": [
+    {
+     "at": 0,
+     "passo": "passo 1",
+     "titulo": "Divide a *tarefa*",
+     "visual": {
+      "type": "foto",
+      "img": "img/tela.jpg",
+      "barra": "Orca · worktrees",
+      "logo": "orca",
+      "credito": "imagem: github.com/stablyai/orca · MIT"
+     }
+    }
+   ]
+  }
+ ]
+}

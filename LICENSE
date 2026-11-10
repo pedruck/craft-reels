@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2026 Artem Novitckii
+Copyright (c) 2026 Artem Novitckii (claude-editing-skills, the base of this project)
+Copyright (c) 2026 Software Craftsmanship Brasília and craft-reels contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,4 +23,6 @@ SOFTWARE.
 
 The fonts in kit/fonts are under the SIL Open Font License 1.1 (see the OFL-*.txt files next to them).
 
-Third-party photographs, sample footage and preview media in assets/style-showcase and docs/style-showcase are excluded from this software license. See assets/style-showcase/README.md and sources.json for credits and rights information.
+Excluded from this software license (see NOTICE.md): the Software Craftsmanship Brasília logo in tema/
+(property of the community), product logos in catalogo/logos (trademarks of their owners), and the
+screenshots and sample frames in docs/previas.

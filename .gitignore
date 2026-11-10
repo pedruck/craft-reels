@@ -1,7 +1,9 @@
+kit/.venv
 kit/.venv/
 kit/vendor/
 kit/models/
 __pycache__/
 .work/
 *.transcript.json
+!testes/fixtures/*.transcript.json
 .DS_Store

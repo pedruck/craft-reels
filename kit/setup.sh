@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-time setup for the editing skills: checks ffmpeg and Node, makes kit/.venv, fetches GSAP,
+# One-time setup (craft-reels, from claude-editing-skills): checks ffmpeg, Node and uv, makes kit/.venv, fetches GSAP,
 # warms up HyperFrames and (with --cutout) downloads the matting model. Safe to run again.
 set -euo pipefail
 KIT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,7 +16,7 @@ if [ ! -x "$KIT/.venv/bin/python" ]; then
   "$PY" -m venv "$KIT/.venv"
 fi
 "$KIT/.venv/bin/python" -m pip install -q --upgrade pip
-"$KIT/.venv/bin/python" -m pip install -q groq numpy pillow onnxruntime
+"$KIT/.venv/bin/python" -m pip install -q numpy pillow onnxruntime
 
 mkdir -p "$KIT/vendor"
 if [ ! -s "$KIT/vendor/gsap.min.js" ]; then
@@ -32,5 +32,6 @@ if [ "${1:-}" = "--cutout" ]; then
   "$KIT/.venv/bin/python" -c "import sys; sys.path.insert(0, '$KIT'); import cutout; cutout.model_path('mobilenetv3')"
 fi
 
-[ -n "${GROQ_API_KEY:-}" ] || echo "note: set GROQ_API_KEY (free at https://console.groq.com/keys) so clips can be transcribed"
+# craft-reels: transcription, cutting checks and face detection run as uv scripts (their own cached envs)
+command -v uv >/dev/null || { echo "uv is missing (https://docs.astral.sh/uv/). Arch: pacman -S uv"; exit 1; }
 say "ready: $KIT/.venv/bin/python"

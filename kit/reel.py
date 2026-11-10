@@ -41,6 +41,9 @@ BASE_CSS = """
 @font-face{font-family:'Pixelify Sans';font-weight:500;src:url(fonts/PixelifySans-500-normal.woff2) format('woff2')}
 @font-face{font-family:'Pixelify Sans';font-weight:700;src:url(fonts/PixelifySans-700-normal.woff2) format('woff2')}
 @font-face{font-family:'TikTok Sans';font-weight:100 900;src:url(fonts/TikTokSans.ttf) format('truetype')}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url(fonts/jetbrains-mono-500-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:700;src:url(fonts/jetbrains-mono-700-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-weight:800;src:url(fonts/jetbrains-mono-800-normal.woff2) format('woff2')}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:'Inter',sans-serif}
@@ -269,8 +272,14 @@ window.__timelines["main"] = tl;
         if out.exists():
             out.unlink()
         print(f'rendering {out.name} ...', flush=True)
-        r = subprocess.run(['npx', '--yes', HYPERFRAMES, 'render', str(self.dir), '-o', str(out), '--fps', str(FPS), '-q', 'high'],
-                           capture_output=True, text=True)
+        # craft-reels: temporary frames go next to the work folder (on disk), never /tmp, which can be RAM;
+        # a 2-minute render needs ~17 GB of frames. Few workers: many workers crashed Chrome (Target closed).
+        tmp = self.job.work / 'tmp'
+        tmp.mkdir(exist_ok=True)
+        env = dict(os.environ, TMPDIR=str(tmp))
+        r = subprocess.run(['npx', '--yes', HYPERFRAMES, 'render', str(self.dir), '-o', str(out), '--fps', str(FPS), '-q', 'high',
+                            '--workers', str(self.job.get('workers', 3))], capture_output=True, text=True, env=env)
+        shutil.rmtree(tmp, ignore_errors=True)
         if not out.exists():
             sys.exit(f'render failed:\n{r.stdout[-3000:]}\n{r.stderr[-3000:]}')
         print('\n'.join(l for l in r.stdout.splitlines() if 'rendered in' in l or '✗' in l))

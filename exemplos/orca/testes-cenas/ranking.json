@@ -1,0 +1,29 @@
+{
+ "template": "ranking",
+ "titulo": "Quem *faz* melhor",
+ "tiers": [
+  "S",
+  "A",
+  "C"
+ ],
+ "itens": [
+  {
+   "texto": "IDE comum",
+   "icone": "📝",
+   "tier": "A",
+   "at": "IDE"
+  },
+  {
+   "texto": "Orca",
+   "logo": "orca",
+   "tier": "S",
+   "at": "Orca"
+  },
+  {
+   "texto": "1 agente",
+   "icone": "🤖",
+   "tier": "C",
+   "at": "tarefa"
+  }
+ ]
+}

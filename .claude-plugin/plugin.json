@@ -1,20 +1,12 @@
 {
-  "name": "editing-skills",
-  "version": "1.1.0",
-  "description": "Eleven video editing skills for Claude Code: six talking-head workflows and five photographic styles including Shape Shift, Picture Stack, Scene Switch, Visual Notes and Orbit Reel.",
+  "name": "craft-reels",
+  "version": "1.0.0",
+  "description": "Pipeline fixa de reels (até 60 s) da Software Craftsmanship Brasília: roteiro, cortes, áudio, legenda, 7 templates e logos automáticas. Baseado em claude-editing-skills de Artem Novitckii.",
   "author": {
-    "name": "Artem Novitckii",
-    "url": "https://novitckii.com"
+    "name": "Software Craftsmanship Brasília",
+    "url": "https://www.instagram.com/software_craftsmanship/"
   },
-  "homepage": "https://novitckii.com/resources/editing-skills/",
-  "repository": "https://github.com/artemnovitckii/claude-editing-skills",
+  "repository": "https://github.com/pedruck/craft-reels",
   "license": "MIT",
-  "keywords": [
-    "video",
-    "reels",
-    "editing",
-    "hyperframes",
-    "instagram",
-    "captions"
-  ]
+  "keywords": ["video", "reels", "editing", "hyperframes", "instagram", "captions", "pt-br", "software-craftsmanship"]
 }

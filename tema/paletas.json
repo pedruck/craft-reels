@@ -1,0 +1,235 @@
+{
+ "_leia": "Paletas do tema craft. Cada paleta define a cor de destaque e tem fundo claro e escuro. A etapa 1 escolhe o fundo pela luminosidade do cenário do vídeo bruto (regra_fundo); a paleta só muda se a pessoa pedir. Valores oficiais de Catppuccin (MIT) e Nord (MIT).",
+ "padrao": "mocha",
+ "regra_fundo": {
+  "cenario": "terço de cima do quadro, média de amostras do vídeo bruto (0 = preto, 1 = branco)",
+  "escuro_acima": 0.55,
+  "claro_abaixo": 0.45,
+  "entre": "escuro"
+ },
+ "fontes": {
+  "titulo": "Inter",
+  "mono": "JetBrains Mono"
+ },
+ "paletas": {
+  "mocha": {
+   "nome": "Catppuccin Mocha",
+   "destaque": "malva",
+   "fonte": "github.com/catppuccin/catppuccin",
+   "claro": {
+    "papel": "#EFF1F5",
+    "papel2": "#F7F8FB",
+    "tinta": "#4C4F69",
+    "cinza": "#6C6F85",
+    "cartao": "#FFFFFF",
+    "barra": "#E6E9EF",
+    "escuro": "#1E1E2E",
+    "escuro_rgb": "30,30,46",
+    "sombra_rgb": "30,30,46",
+    "pilula": "rgba(30,30,46,.94)",
+    "barra_escura": "#313244",
+    "barra_escura_txt": "#BAC2DE",
+    "chip_escuro": "#45475A",
+    "cinza_claro": "#A6ADC8",
+    "sobre_tier": "#1E1E2E",
+    "codigo": {
+     "kw": "#CBA6F7",
+     "str": "#A6E3A1",
+     "com": "#7F849C",
+     "fn": "#89B4FA",
+     "fg": "#CDD6F4",
+     "num": "#585B70"
+    },
+    "sobre_destaque": "#FFFFFF",
+    "destaque": "#8839EF",
+    "destaque2": "#CBA6F7",
+    "destaque2_rgb": "203,166,247",
+    "tiers": [
+     "#CBA6F7",
+     "#B4BEFE",
+     "#CCD0DA"
+    ]
+   },
+   "escuro": {
+    "papel": "#1E1E2E",
+    "papel2": "#28283C",
+    "tinta": "#CDD6F4",
+    "cinza": "#A6ADC8",
+    "cartao": "#313244",
+    "barra": "#45475A",
+    "escuro": "#181825",
+    "escuro_rgb": "24,24,37",
+    "sombra_rgb": "17,17,27",
+    "pilula": "rgba(17,17,27,.94)",
+    "barra_escura": "#313244",
+    "barra_escura_txt": "#BAC2DE",
+    "chip_escuro": "#45475A",
+    "cinza_claro": "#A6ADC8",
+    "sobre_tier": "#1E1E2E",
+    "codigo": {
+     "kw": "#CBA6F7",
+     "str": "#A6E3A1",
+     "com": "#7F849C",
+     "fn": "#89B4FA",
+     "fg": "#CDD6F4",
+     "num": "#585B70"
+    },
+    "sobre_destaque": "#1E1E2E",
+    "destaque": "#CBA6F7",
+    "destaque2": "#CBA6F7",
+    "destaque2_rgb": "203,166,247",
+    "tiers": [
+     "#CBA6F7",
+     "#B4BEFE",
+     "#7F849C"
+    ]
+   }
+  },
+  "latte": {
+   "nome": "Catppuccin Latte",
+   "destaque": "lavanda",
+   "fonte": "github.com/catppuccin/catppuccin",
+   "claro": {
+    "papel": "#EFF1F5",
+    "papel2": "#F7F8FB",
+    "tinta": "#4C4F69",
+    "cinza": "#6C6F85",
+    "cartao": "#FFFFFF",
+    "barra": "#E6E9EF",
+    "escuro": "#1E1E2E",
+    "escuro_rgb": "30,30,46",
+    "sombra_rgb": "30,30,46",
+    "pilula": "rgba(30,30,46,.94)",
+    "barra_escura": "#313244",
+    "barra_escura_txt": "#BAC2DE",
+    "chip_escuro": "#45475A",
+    "cinza_claro": "#A6ADC8",
+    "sobre_tier": "#1E1E2E",
+    "codigo": {
+     "kw": "#CBA6F7",
+     "str": "#A6E3A1",
+     "com": "#7F849C",
+     "fn": "#89B4FA",
+     "fg": "#CDD6F4",
+     "num": "#585B70"
+    },
+    "sobre_destaque": "#FFFFFF",
+    "destaque": "#7287FD",
+    "destaque2": "#B4BEFE",
+    "destaque2_rgb": "180,190,254",
+    "tiers": [
+     "#B4BEFE",
+     "#89B4FA",
+     "#CCD0DA"
+    ]
+   },
+   "escuro": {
+    "papel": "#1E1E2E",
+    "papel2": "#28283C",
+    "tinta": "#CDD6F4",
+    "cinza": "#A6ADC8",
+    "cartao": "#313244",
+    "barra": "#45475A",
+    "escuro": "#181825",
+    "escuro_rgb": "24,24,37",
+    "sombra_rgb": "17,17,27",
+    "pilula": "rgba(17,17,27,.94)",
+    "barra_escura": "#313244",
+    "barra_escura_txt": "#BAC2DE",
+    "chip_escuro": "#45475A",
+    "cinza_claro": "#A6ADC8",
+    "sobre_tier": "#1E1E2E",
+    "codigo": {
+     "kw": "#CBA6F7",
+     "str": "#A6E3A1",
+     "com": "#7F849C",
+     "fn": "#89B4FA",
+     "fg": "#CDD6F4",
+     "num": "#585B70"
+    },
+    "sobre_destaque": "#1E1E2E",
+    "destaque": "#B4BEFE",
+    "destaque2": "#B4BEFE",
+    "destaque2_rgb": "180,190,254",
+    "tiers": [
+     "#B4BEFE",
+     "#89B4FA",
+     "#7F849C"
+    ]
+   }
+  },
+  "nord": {
+   "nome": "Nord",
+   "destaque": "azul",
+   "fonte": "nordtheme.com/docs/colors-and-palettes",
+   "claro": {
+    "papel": "#ECEFF4",
+    "papel2": "#F6F8FB",
+    "tinta": "#2E3440",
+    "cinza": "#4C566A",
+    "cartao": "#FFFFFF",
+    "barra": "#E5E9F0",
+    "escuro": "#2E3440",
+    "escuro_rgb": "46,52,64",
+    "sombra_rgb": "46,52,64",
+    "pilula": "rgba(46,52,64,.94)",
+    "barra_escura": "#3B4252",
+    "barra_escura_txt": "#D8DEE9",
+    "chip_escuro": "#434C5E",
+    "cinza_claro": "#D8DEE9",
+    "sobre_tier": "#2E3440",
+    "codigo": {
+     "kw": "#81A1C1",
+     "str": "#A3BE8C",
+     "com": "#7B88A1",
+     "fn": "#88C0D0",
+     "fg": "#ECEFF4",
+     "num": "#4C566A"
+    },
+    "sobre_destaque": "#FFFFFF",
+    "destaque": "#5E81AC",
+    "destaque2": "#88C0D0",
+    "destaque2_rgb": "136,192,208",
+    "tiers": [
+     "#88C0D0",
+     "#8FBCBB",
+     "#D8DEE9"
+    ]
+   },
+   "escuro": {
+    "papel": "#2E3440",
+    "papel2": "#3B4252",
+    "tinta": "#ECEFF4",
+    "cinza": "#D8DEE9",
+    "cartao": "#3B4252",
+    "barra": "#434C5E",
+    "escuro": "#242933",
+    "escuro_rgb": "36,41,51",
+    "sombra_rgb": "36,41,51",
+    "pilula": "rgba(36,41,51,.94)",
+    "barra_escura": "#3B4252",
+    "barra_escura_txt": "#D8DEE9",
+    "chip_escuro": "#4C566A",
+    "cinza_claro": "#D8DEE9",
+    "sobre_tier": "#2E3440",
+    "codigo": {
+     "kw": "#81A1C1",
+     "str": "#A3BE8C",
+     "com": "#7B88A1",
+     "fn": "#88C0D0",
+     "fg": "#ECEFF4",
+     "num": "#4C566A"
+    },
+    "sobre_destaque": "#2E3440",
+    "destaque": "#88C0D0",
+    "destaque2": "#88C0D0",
+    "destaque2_rgb": "136,192,208",
+    "tiers": [
+     "#88C0D0",
+     "#8FBCBB",
+     "#D8DEE9"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "template": "codigo",
+ "cenas": [
+  {
+   "at": 0,
+   "titulo": "Vários *agentes*",
+   "visual": {
+    "type": "terminal",
+    "titulo": "orca",
+    "comandos": [
+     {
+      "cmd": "orca worktree new front-end",
+      "at": "coordenar",
+      "saida": [
+       "agente 1 · front-end",
+       "agente 2 · back-end"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "at": "Orca",
+   "titulo": "Divide a *tarefa*",
+   "visual": {
+    "type": "codigo",
+    "arquivo": "tarefas.py",
+    "linguagem": "python",
+    "linhas": [
+     "# a tarefa grande vira várias",
+     "def dividir(tarefa):",
+     "-     return [tarefa]",
+     "+     return planejar(tarefa)",
+     "",
+     "for parte in dividir(app):",
+     "    agente(parte).rodar()"
+    ],
+    "realces": [
+     {
+      "linha": 2,
+      "at": "dividir"
+     },
+     {
+      "linha": 4,
+      "at": "especializados"
+     }
+    ]
+   }
+  }
+ ]
+}

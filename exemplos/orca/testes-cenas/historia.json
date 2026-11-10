@@ -1,0 +1,47 @@
+{
+ "template": "historia",
+ "cenas": [
+  {
+   "at": 0,
+   "titulo": "Um time de *agentes*",
+   "subtitulo": "todos no mesmo projeto",
+   "cartoes": [
+    {
+     "icone": "🧑‍💻",
+     "texto": "você"
+    },
+    {
+     "icone": "🤖",
+     "texto": "agentes",
+     "at": "agentes"
+    },
+    {
+     "icone": "🧩",
+     "texto": "projeto",
+     "at": "projeto"
+    }
+   ]
+  },
+  {
+   "at": "Orca",
+   "titulo": "Essa é a *Orca*",
+   "subtitulo": "uma IDE open source",
+   "credito": "imagem: github.com/stablyai/orca · MIT",
+   "cartoes": [
+    {
+     "img": "img/diffs.jpg",
+     "texto": "diff"
+    },
+    {
+     "logo": "orca",
+     "texto": "Orca"
+    },
+    {
+     "icone": "🧪",
+     "texto": "testes",
+     "at": "especializados"
+    }
+   ]
+  }
+ ]
+}

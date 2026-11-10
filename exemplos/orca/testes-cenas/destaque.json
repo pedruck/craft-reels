@@ -1,0 +1,17 @@
+{
+ "template": "destaque",
+ "chaves": [
+  "agentes",
+  "orca"
+ ],
+ "cenas": [
+  {
+   "at": 0,
+   "texto": "Uma IDE *open source* para coordenar vários agentes de IA"
+  },
+  {
+   "at": "Orca",
+   "texto": "O nome dela é *Orca*: uma tarefa grande vira várias"
+  }
+ ]
+}

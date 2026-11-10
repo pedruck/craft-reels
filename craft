@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""craft — a pipeline fixa de reels da Software Craftsmanship Brasília. Leia AGENTS.md."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "pipeline"))
+from cli import main  # noqa: E402
+
+sys.exit(main())

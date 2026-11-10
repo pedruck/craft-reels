@@ -1,0 +1,114 @@
+{
+ "_leia": "Uma entrada por produto. 'falado' são as formas que disparam a logo; 'erros' são grafias erradas do Whisper, trocadas pelo nome certo na transcrição (vale pra legenda também). 'fundo' é a cor do quadrado atrás do ícone. 'escrito' é a logo por extenso, usada na cena do tipo logo. 'fonte' diz de onde veio o arquivo.",
+ "orca": {
+  "nome": "Orca",
+  "icone": "orca.png",
+  "fundo": "#ffffff",
+  "falado": [
+   "orca"
+  ],
+  "erros": {},
+  "fonte": "github.com/stablyai/orca, resources/build/icon.png (MIT, Lovecast Inc.)"
+ },
+ "omarchy": {
+  "nome": "Omarchy",
+  "icone": "omarchy.png",
+  "escrito": "omarchy-escrito.svg",
+  "fundo": "#1d1b18",
+  "falado": [
+   "omarchy"
+  ],
+  "erros": {
+   "omarte": "Omarchy",
+   "omart": "Omarchy",
+   "omarch": "Omarchy",
+   "walmart": "Omarchy",
+   "omarqui": "Omarchy",
+   "omarc": "Omarchy",
+   "o marchy": "Omarchy",
+   "o march": "Omarchy",
+   "omat": "Omarchy",
+   "omar": "Omarchy",
+   "omarche": "Omarchy",
+   "omast": "Omarchy"
+  },
+  "fonte": "/usr/share/omarchy/icon.png e logo.svg (pacote do Omarchy instalado)"
+ },
+ "docker": {
+  "nome": "Docker",
+  "icone": "docker.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "docker"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/docker (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "archlinux": {
+  "nome": "Arch Linux",
+  "icone": "archlinux.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "arch linux",
+   "arch"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/archlinux (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "obsidian": {
+  "nome": "Obsidian",
+  "icone": "obsidian.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "obsidian"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/obsidian (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "libreoffice": {
+  "nome": "LibreOffice",
+  "icone": "libreoffice.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "libreoffice"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/libreoffice (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "obs": {
+  "nome": "OBS",
+  "icone": "obs.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "obs"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/obsstudio (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "mac": {
+  "nome": "Mac",
+  "icone": "mac.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "mac",
+   "macos",
+   "macbook"
+  ],
+  "erros": {},
+  "fonte": "simpleicons.org/apple (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ },
+ "claude": {
+  "nome": "Claude",
+  "icone": "claude.svg",
+  "fundo": "#ffffff",
+  "falado": [
+   "claude",
+   "claude code"
+  ],
+  "erros": {
+   "cloud code": "Claude Code",
+   "clode": "Claude"
+  },
+  "fonte": "simpleicons.org/claude (simple-icons@16.34.0, CC0; a marca é de quem é dona)"
+ }
+}

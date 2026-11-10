@@ -1,0 +1,42 @@
+{
+ "template": "bastidores",
+ "chaves": [
+  "agentes"
+ ],
+ "cenas": [
+  {
+   "at": 0,
+   "titulo": "IDE *open source*",
+   "visual": {
+    "type": "contador",
+    "valor": "3",
+    "texto": "agentes no *mesmo* projeto",
+    "at": "vários"
+   }
+  },
+  {
+   "at": "Orca",
+   "titulo": "Essa é a *Orca*",
+   "visual": {
+    "type": "grade",
+    "items": [
+     {
+      "logo": "orca",
+      "texto": "Orca",
+      "at": "Orca"
+     },
+     {
+      "icone": "🤖",
+      "texto": "Agentes",
+      "at": "agentes#2"
+     },
+     {
+      "icone": "🧩",
+      "texto": "Tarefas",
+      "at": "tarefa"
+     }
+    ]
+   }
+  }
+ ]
+}

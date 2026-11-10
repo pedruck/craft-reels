@@ -1,0 +1,40 @@
+{
+ "template": "split",
+ "chaves": [
+  "agentes"
+ ],
+ "cenas": [
+  {
+   "at": 0,
+   "passo": "novidade",
+   "titulo": "IDE *open source*",
+   "visual": {
+    "type": "foto",
+    "img": "img/diffs.jpg",
+    "barra": "Orca · diff",
+    "logo": "orca",
+    "credito": "imagem: github.com/stablyai/orca · MIT"
+   }
+  },
+  {
+   "at": "Orca",
+   "titulo": "Divide a *tarefa*",
+   "visual": {
+    "type": "compare",
+    "arrow_at": "dividir",
+    "left": {
+     "label": "Antes",
+     "big": "1 agente",
+     "small": "faz tudo",
+     "at": "Orca"
+    },
+    "right": {
+     "label": "Depois",
+     "big": "Vários",
+     "small": "especializados",
+     "at": "vários#2"
+    }
+   }
+  }
+ ]
+}

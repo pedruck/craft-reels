@@ -1,15 +1,15 @@
 {
-  "name": "claude-editing-skills",
+  "name": "craft-reels",
   "owner": {
-    "name": "Artem Novitckii",
-    "url": "https://novitckii.com"
+    "name": "Software Craftsmanship Brasília",
+    "url": "https://www.instagram.com/software_craftsmanship/"
   },
-  "description": "Artem Novitckii's video editing skills for Claude Code.",
+  "description": "Pipeline fixa de reels da Software Craftsmanship Brasília para agentes de IA.",
   "plugins": [
     {
-      "name": "editing-skills",
+      "name": "craft-reels",
       "source": "./",
-      "description": "Eleven local video editing skills, including five photographic styles with editable templates, image assets and moving previews."
+      "description": "Skills reel e roteiro: do roteiro de até 60 s ao reel pronto, com 7 templates e a identidade da comunidade."
     }
   ]
 }

@@ -1,0 +1,13 @@
+   0.0 Galera, vocês já ouviram falar da nova IDE Open Source, que permite você coordenar vários agentes de IA trabalhando no mesmo projeto.
+   7.5 O nome dessa ferramenta é Orca, e a ideia dessa ferramenta é a gente dividir uma tarefa grande em vários agentes especializados,
+  13.9 em atividades diferentes.
+  15.4 Então, em vez de a gente pedir um agente para fazer uma tarefa inteira, e aí com o risco dele se perder
+  20.4 no meio dessa tarefa, ou entregar certas áreas dessa tarefa em uma qualidade inferior às outras, a gente pode, por exemplo, quando
+  27.1 a gente vai criar uma funcionalidade de um aplicativo, Por exemplo, a gente pode configurar um agente coordenador Que vai dividir esse
+  32.7 trabalho e delegar esse trabalho em vários agentes especializados Então, por exemplo, a gente pode ter um agente que vai cuidar do
+  38.2 design do front -end A gente pode ter outro agente que vai cuidar de outra parte dependente do código E a gente
+  43.0 pode ter outro agente também especializado em revisar e testar O que os outros agentes entregaram, criar os testes desse código, por
+  51.0 exemplo E aí a gente teria o agente coordenador gerenciando tudo isso E verificando as entregas de todos esses agentes Então assim,
+  57.8 é uma ideia bem diferente porque além de uma orquestração de agentes, isso também se trata de uma IDE, ou seja, você
+  62.9 vê o que os agentes estão fazendo diretamente no código.
+  65.2 E assim, é uma ferramenta bem diferente e bem interessante para você que está interessado em desenvolver software utilizando agentes de IA.

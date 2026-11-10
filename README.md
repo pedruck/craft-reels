@@ -1,104 +1,110 @@
-# Claude editing skills
+# craft-reels
 
-Eleven skills for Claude Code: six workflows that edit your talking-head clips around your words, plus five photographic styles with editable templates and included image assets. Rendering happens on your own computer.
+Pipeline fixa de reels da **Software Craftsmanship Brasília**
+([@software_craftsmanship](https://www.instagram.com/software_craftsmanship/)), feita para ser usada por
+agentes de IA (Claude Code, Codex, Cursor…). Um vídeo falado de celular entra; sai um reel 1080x1920 de
+**até 60 s**, com a identidade da comunidade, sempre pelas mesmas etapas.
 
-![The six skills, one frame each](docs/skills.jpg)
+![Os 7 templates na paleta padrão (Catppuccin Mocha), fundo claro e escuro](docs/previas/par-mocha.jpg)
 
-| Skill | What it makes |
-|---|---|
-| `/trial-reels` | The same clip as **3 visually distinct reels** to post as Instagram trial reels: a big title with karaoke captions, a post-card header with punch-in zooms, and a pixel-font stat in a framed shot. |
-| `/behind-the-person` | **Graphics behind you.** You are cut out and stand in front of a panel (your post grid, a bar chart or a screenshot). Big words land on your chest and a profile card counts up. |
-| `/explainer` | **You at the bottom, visuals on top.** A rounded panel on a light backdrop with your head breaking out over it, and a before-to-after comparison (or a list) explaining the point. |
-| `/split-screen` | **The classic half-and-half.** A step badge, a serif headline and a window showing the step on top, you on the bottom, and captions on the seam. |
-| `/ranking-list` | **A tier list on your chest.** Each item pops up when you name it and drops into its tier (S to F) on the verdict. |
-| `/storytelling` | **Three image cards, a title and a subtitle**, all landing together over one continuous take, with simple TikTok-style captions. |
+## O que ele faz
 
-## Five new photographic styles
+- **Corta** gaguejo, "ééé", silêncio e toda frase que a pessoa marcou com "refaz"/"refaça"; confere cada
+  trecho sozinho para não sobrar lasca nem fala repetida. Com o roteiro, escolhe a tomada certa.
+- **Limpa o áudio** e deixa no volume do Instagram (-14 LUFS).
+- **Legenda** em pílula, sempre embaixo e nunca sobre o rosto, com as palavras-chave em `{destaque}`.
+- **Ilustra** cada ponto com um visual simples (lista, fluxo, comparação, contador, código, terminal, logo, print).
+- **Mostra a logo** de todo produto ou empresa pública citado.
+- **Cabe em 60 s**: se passar, acelera até 1,25x sem mudar o tom da voz.
+- **Divulga só a comunidade**: selo e `@software_craftsmanship`, nunca a ferramenta.
 
-| Skill | What it makes |
-|---|---|
-| [`/shape-shift`](skills/shape-shift/SKILL.md) | Circular photographic match cuts above an established speaker. |
-| [`/picture-stack`](skills/picture-stack/SKILL.md) | Three image cards above the speaker, then one expands into focus. |
-| [`/scene-switch`](skills/scene-switch/SKILL.md) | Sharp photographic backgrounds change behind a continuous speaker cutout. |
-| [`/visual-notes`](skills/visual-notes/SKILL.md) | A complete image becomes a close-up of one meaningful detail. |
-| [`/orbit-reel`](skills/orbit-reel/SKILL.md) | Image cards orbit in 3D, passing behind and in front of the speaker. |
+Tudo roda na sua máquina, sem chave de API.
 
-| Shape Shift | Picture Stack | Scene Switch | Visual Notes | Orbit Reel |
-|---|---|---|---|---|
-| [![Shape Shift](docs/style-showcase/shape-shift.jpg)](docs/style-showcase/shape-shift.mp4) | [![Picture Stack](docs/style-showcase/picture-stack.jpg)](docs/style-showcase/picture-stack.mp4) | [![Scene Switch](docs/style-showcase/scene-switch.jpg)](docs/style-showcase/scene-switch.mp4) | [![Visual Notes](docs/style-showcase/visual-notes.jpg)](docs/style-showcase/visual-notes.mp4) | [![Orbit Reel](docs/style-showcase/orbit-reel.jpg)](docs/style-showcase/orbit-reel.mp4) |
+## Instalar
 
-Click an image for its moving preview. These five start from reviewed **4.2-second silent templates**, with nine source photographs and sample footage included. They can showcase a visual idea independently of the spoken topic. [Build and customize them](docs/style-showcase/README.md) · [Browse the images and credits](assets/style-showcase/README.md).
-
-See the original six moving: **[novitckii.com/resources/editing-skills](https://novitckii.com/resources/editing-skills/)**
-
-More skills are coming. Pull the repo to get them.
-
-## Install
-
-You need macOS or Linux with **ffmpeg**, **Node.js 22+** and **Python 3.9+**, plus a free **[Groq API key](https://console.groq.com/keys)** for the original six skills’ transcripts. The five photographic templates do not require an API key.
+Precisa de Linux ou macOS com `ffmpeg` (com libvpx-vp9), Node.js 22+, Python 3.10+ e
+[uv](https://docs.astral.sh/uv/).
 
 ```bash
-brew install ffmpeg node        # if you don't have them
-export GROQ_API_KEY=gsk_...     # add it to ~/.zshrc so it sticks
-git clone https://github.com/artemnovitckii/claude-editing-skills.git ~/claude-editing-skills
-cd ~/claude-editing-skills && ./install.sh
+git clone https://github.com/pedruck/craft-reels.git
+cd craft-reels && ./install.sh
 ```
 
-`install.sh` links every skill into `~/.claude/skills/` (so they show up as `/trial-reels`, `/explainer` and so on) and runs the one-time setup. The setup:
-- makes a Python environment in `kit/.venv`
-- fetches GSAP
-- warms up HyperFrames
-- downloads the matting model when run with `--cutout`
+O `install.sh` liga as skills `/reel` e `/roteiro` em `~/.claude/skills` e prepara o kit de render. A
+primeira transcrição baixa o Whisper large-v3 (~3 GB).
 
-To update later, run `git pull && ./install.sh`.
-
-**It's also packaged as a Claude Code plugin.** Run these inside Claude Code:
-```
-/plugin marketplace add artemnovitckii/claude-editing-skills
-/plugin install editing-skills@claude-editing-skills
-```
-Plugin skills are namespaced (`/editing-skills:explainer`). The git clone above is the route tested end to end.
-
-## Use the original six workflows
-
-Open Claude Code anywhere and point it at a clip:
+Como plugin do Claude Code:
 
 ```
-/explainer ~/Downloads/my-clip.mp4
-/trial-reels ~/Downloads/my-reel.mp4 use the hook
-/behind-the-person ~/Downloads/clip.mp4, my posts are in ~/Desktop/posts
+/plugin marketplace add pedruck/craft-reels
+/plugin install craft-reels@craft-reels
 ```
 
-The original six skills follow these five steps:
-1. It transcribes the clip with word timings (Groq Whisper).
-2. It picks a stretch and looks at a frame to find your eyes and chin.
-3. It writes a small JSON spec next to your clip. Every visual is anchored to a spoken word, so it lands when you say it.
-4. It renders with [HyperFrames](https://github.com/heygen-com/hyperframes) (HTML and GSAP to MP4, 1080x1920, 30 fps, your voice kept).
-5. It checks a contact sheet with Instagram's safe zones marked, and fixes what's off.
+## Usar
 
-You get `my-clip.explainer.mp4` (and its `.sheet.jpg`) next to the clip. Rendering takes about 15 to 30 seconds per reel. The cutout skills add about 0.1 s per frame for the matting.
+Peça ao agente: *"faz o reel desse vídeo: ~/Downloads/video.mp4"*. Ou direto:
 
-Bring your own images (your posts, screenshots, analytics) for the visuals that need them. Every skill also has visuals that need none.
-
-## How it's built
-
-```
-skills/<name>/SKILL.md     what Claude follows: steps, the spec, taste rules
-skills/<name>/build.py     spec.json -> HyperFrames composition -> mp4
-kit/reel.py                shared: clip prep, word anchors, captions, render, checks
-kit/transcribe.py          Groq Whisper with word timestamps
-kit/cutout.py              speaker cutout (RobustVideoMatting, ONNX on the CPU) -> VP9 alpha webm
-kit/setup.sh               one-time setup
+```bash
+./craft run ~/Downloads/video.mp4 --nomes "Orca, Claude Code"
 ```
 
-To add a skill, copy a folder in `skills/` and change its `build.py`. The original six use `Job(spec) -> Comp -> finish()` for clips, words, captions, rendering and safe-zone sheets. The five photographic styles use `kit/style_template.py` to prepare their editable HTML templates and media overrides. Then run `./install.sh` again.
+Ele roda até precisar do agente (escrever as cenas), e `./craft run <pasta>` continua. Para roteirizar
+antes de gravar: *"/roteiro um vídeo de 50 s sobre X"*, e depois `--roteiro roteiro.md`.
 
-## Credits
+Por padrão é tudo automático. Aprovar cortes, ver as cenas antes, trocar template, paleta ou fundo e
+passar de 60 s são opções que o agente só usa se você pedir. Agentes: leiam o [`AGENTS.md`](AGENTS.md).
 
-- [HyperFrames](https://github.com/heygen-com/hyperframes) by HeyGen renders the compositions.
-- [GSAP](https://gsap.com) drives the animation. It is fetched at setup, not included here.
-- [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting) by Shanchuan Lin et al. (GPL-3.0) does the cutout. The model is downloaded at setup, not included here.
-- Transcription is Whisper on [Groq](https://groq.com).
-- The fonts are Inter, Archivo Black, DM Serif Display, Instrument Serif, Pixelify Sans and TikTok Sans, all under the SIL Open Font License.
+## Templates
 
-Made by [Artem Novitckii](https://novitckii.com). Code and authored instructions are MIT licensed; [image and sample-media rights are separate](assets/style-showcase/README.md#rights-and-sample-footage).
+| Template | Base no original | Para |
+|---|---|---|
+| `explainer` (padrão) | explainer | explicar um conceito |
+| `split` | split-screen | mostrar uma ferramenta ou um passo a passo |
+| `bastidores` | behind-the-person | apresentar um produto ou ideia de impacto |
+| `ranking` | ranking-list | comparar opções |
+| `historia` | storytelling | contar algo em partes |
+| `destaque` | trial-reels | um dado ou frase de impacto |
+| `codigo` | — (novo) | código, refatoração, terminal |
+
+Paletas: **Catppuccin Mocha** (padrão), Catppuccin Latte e Nord, cada uma com fundo claro e escuro. O fundo
+é escolhido pela luminosidade do vídeo: cenário claro pede fundo escuro, e vice-versa.
+
+## Como é feito
+
+```
+craft                     a CLI (pipeline/cli.py): etapas 1–10, estado.json, saída OK/AVISO/ERRO
+pipeline/                 cada etapa: preparar, transcrever, cortes, áudio, legenda, montar, duração, conferir, entregar
+templates/motor.py        tema, selo, logos, visuais, legenda, validação — comum a todos
+templates/<nome>/         build.py (layout), schema.json (formato do cenas.json), referência do original
+kit/                      motor de render do claude-editing-skills (HyperFrames + GSAP + recorte)
+tema/                     paletas.json e a logo da comunidade
+catalogo/                 logos de produto e correções do Whisper
+skills/                   /reel e /roteiro
+docs/                     plano, armadilhas, prévias
+testes/                   regras de corte, roteiro, legenda e validação
+```
+
+## Créditos
+
+- **[Artem Novitckii](https://novitckii.com)** — [claude-editing-skills](https://github.com/artemnovitckii/claude-editing-skills)
+  (MIT), a base deste projeto: o motor de render, a ideia de ancorar cada visual na palavra falada e os seis
+  formatos que viraram templates aqui. O histórico original está preservado.
+- **[HyperFrames](https://github.com/heygen-com/hyperframes)** (HeyGen, Apache-2.0) — render HTML → vídeo.
+- **[GSAP](https://gsap.com)** (GreenSock) — animações.
+- **[RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting)** (Shanchuan Lin et al., GPL-3.0) —
+  recorte da pessoa; o modelo é baixado na instalação.
+- **[faster-whisper](https://github.com/SYSTRAN/faster-whisper)** (SYSTRAN, MIT) e
+  **[Whisper](https://github.com/openai/whisper)** (OpenAI, MIT) — transcrição local.
+- **[OpenCV](https://opencv.org)** (Apache-2.0) — detecção de rosto; **[FFmpeg](https://ffmpeg.org)** — tudo de
+  vídeo e áudio; **[uv](https://github.com/astral-sh/uv)** (Astral) — ambientes dos scripts.
+- **[Catppuccin](https://github.com/catppuccin/catppuccin)** e **[Nord](https://www.nordtheme.com)** (MIT) — paletas.
+- **Fontes** (SIL OFL 1.1): [Inter](https://rsms.me/inter/), [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono),
+  e as do kit original (Archivo Black, DM Serif Display, Instrument Serif, Pixelify Sans, TikTok Sans).
+- **[Simple Icons](https://simpleicons.org)** (CC0) — logos de produto; as marcas são de seus donos.
+- **[Orca](https://github.com/stablyai/orca)** (MIT) — capturas usadas nas prévias e a logo do catálogo.
+- **[Potrace](https://potrace.sourceforge.net)** (Peter Selinger) — vetorização da logo da comunidade.
+- Ideias de [video-use](https://github.com/browser-use/video-use), [video-editing-skill](https://github.com/social-media-skills/video-editing-skill),
+  [ghost-editor](https://github.com/kurbaitaev/ghost-editor) e [open-edits](https://github.com/kevinbadi/open-edits) (todos MIT).
+- **Software Craftsmanship Brasília** — identidade visual e logo (da comunidade, fora da licença MIT).
+
+Detalhes de licença em [`NOTICE.md`](NOTICE.md). Código sob [MIT](LICENSE).

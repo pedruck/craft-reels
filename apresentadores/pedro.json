@@ -1,0 +1,15 @@
+{
+ "_leia": "Perfil de quem grava. nomes: termos que essa pessoa costuma falar (entram no prompt do Whisper). correcoes: erros que o Whisper comete com a voz dela (\"errado\": \"certo\"), aplicados na transcrição. zoom: o punch-in alternado nas emendas.",
+ "nome": "Pedro",
+ "nomes": [
+  "Claude Code",
+  "Codex",
+  "agentes de IA"
+ ],
+ "correcoes": {
+  "agência ia": "agentes de IA",
+  "cloud code": "Claude Code",
+  "a agents de ia": "agentes de IA"
+ },
+ "zoom": 1.08
+}

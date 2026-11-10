@@ -1,0 +1,62 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "cenas.json — destaque",
+ "description": "Vídeo inteiro de fundo; cartão de post da comunidade no topo com uma frase por cena; legenda grande no peito. Para um dado ou frase de impacto. Sem logo de produto.",
+ "type": "object",
+ "required": [
+  "cenas"
+ ],
+ "properties": {
+  "template": {
+   "const": "destaque"
+  },
+  "chaves": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "3–8 palavras da legenda que saem destacadas (nomes de produto entram sozinhos)"
+  },
+  "logos": {
+   "description": "\"auto\" (padrão), lista de chaves do catálogo, ou false"
+  },
+  "cenas": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "at",
+     "texto"
+    ],
+    "properties": {
+     "at": {
+      "description": "quando: segundos no vídeo cortado, ou palavra falada (\"palavra\", \"palavra#2\", \"palavra+0.3\", \"duas palavras\")",
+      "type": [
+       "number",
+       "string"
+      ]
+     },
+     "texto": {
+      "type": "string",
+      "description": "até 3 linhas; *palavra* destacada"
+     }
+    }
+   }
+  }
+ },
+ "examples": [
+  {
+   "template": "destaque",
+   "chaves": [
+    "17"
+   ],
+   "cenas": [
+    {
+     "at": 0,
+     "texto": "Um modelo que classifica *17×* mais barato que um LLM pequeno"
+    }
+   ]
+  }
+ ]
+}

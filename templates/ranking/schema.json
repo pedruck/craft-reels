@@ -1,0 +1,93 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "cenas.json — ranking",
+ "description": "Vídeo inteiro de fundo; título e tier list (S, A, B…) que se preenche quando cada item é falado. Para comparar opções.",
+ "type": "object",
+ "required": [
+  "titulo",
+  "itens"
+ ],
+ "properties": {
+  "template": {
+   "const": "ranking"
+  },
+  "chaves": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "description": "3–8 palavras da legenda que saem destacadas (nomes de produto entram sozinhos)"
+  },
+  "logos": {
+   "description": "\"auto\" (padrão), lista de chaves do catálogo, ou false"
+  },
+  "titulo": {
+   "type": "string",
+   "description": "1–4 palavras; UMA entre *asteriscos* sai em mono, na cor de destaque, entre chaves; cabe ~20 caracteres"
+  },
+  "tiers": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "maxItems": 4
+  },
+  "itens": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "texto",
+     "tier",
+     "at"
+    ],
+    "properties": {
+     "texto": {
+      "type": "string"
+     },
+     "tier": {
+      "type": "string"
+     },
+     "at": {
+      "description": "quando: segundos no vídeo cortado, ou palavra falada (\"palavra\", \"palavra#2\", \"palavra+0.3\", \"duas palavras\")",
+      "type": [
+       "number",
+       "string"
+      ]
+     },
+     "logo": {
+      "type": "string"
+     },
+     "icone": {
+      "type": "string"
+     }
+    }
+   }
+  }
+ },
+ "examples": [
+  {
+   "template": "ranking",
+   "titulo": "Quem *classifica* mais rápido",
+   "tiers": [
+    "S",
+    "A",
+    "C"
+   ],
+   "itens": [
+    {
+     "texto": "Jev",
+     "icone": "⚡",
+     "tier": "S",
+     "at": "Jev"
+    },
+    {
+     "texto": "LLM rápido",
+     "icone": "🏎️",
+     "tier": "A",
+     "at": "rápido"
+    }
+   ]
+  }
+ ]
+}
