@@ -37,7 +37,7 @@ PEITO_QUEIXO, PEITO_MARGEM = 1320, 56      # legenda grande no peito: queixo atÃ
 def posicao_legenda(queixo):
     """topo da legenda para um queixo em `queixo` (y no quadro); (topo, cobre_rosto?)"""
     topo = max(LEG_MIN, queixo + 24)
-    return min(topo, LEG_MAX), topo > LEG_MAX
+    return min(topo, LEG_MAX), topo > LEG_MAX + 2     # 2 px de folga: arredondamento do enquadramento
 
 
 def video_cheio(enq, queixo_max=LEG_MAX - 24):  # templates com legenda grande no peito passam queixo_max=PEITO_QUEIXO

@@ -128,9 +128,9 @@ if rosto:
     escala = min(1.3, max(0.62, 525 / max(cab, 1)))     # rosto enorme (selfie de perto) encolhe até 0,62
     video_y = 1200 - rosto["olho_y"] * escala
     legenda_y = video_y + rosto["queixo_y"] * escala + 24
-    if legenda_y > 1456:          # a legenda fica SEMPRE embaixo e nunca sobre o rosto: sobe a pessoa
-        video_y -= legenda_y - 1456
-        legenda_y = 1456
+    if legenda_y > 1454:          # a legenda fica SEMPRE embaixo e nunca sobre o rosto: sobe a pessoa
+        video_y -= legenda_y - 1454
+        legenda_y = 1454
     legenda_y = max(1330, legenda_y)
     enq["painel"] = {"escala": round(escala, 3), "video_y": round(video_y), "olho_y": rosto["olho_y"], "largura": 886,
                      "centro_x": rosto["centro_x"]}
