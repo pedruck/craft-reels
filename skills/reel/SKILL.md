@@ -21,7 +21,7 @@ R="$(readlink -f "<base directory desta skill>")/../.."
 3. Olhe só a `reel.cenas.jpg`. Corrija o `cenas.json` se precisar e rode de novo.
 4. Entregue `saida/` com o resumo do `relatorio.md`.
 
-Não ligue pontos de controle (`--parar-em`, `--template`, `--paleta`, `--fundo`, `--sem-limite`) sem a
+Não ligue pontos de controle (`--parar-em`, `--template`, `--paleta`, `--fundo`, `--sem-limite`, `--ruido`) sem a
 pessoa pedir. A tabela "pedido → opção" está no `AGENTS.md`.
 
 Primeira vez na máquina: `"$R/install.sh"`.

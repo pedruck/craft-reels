@@ -30,10 +30,10 @@ precisa de ~17 GB por 2 min de vídeo).
 
 | # | Etapa | Quem | Gera | Regra fixa |
 |---|---|---|---|---|
-| 1 | preparar | máquina | `enquadramento.json`, `quadro.jpg` | acha o rosto; cenário claro → fundo escuro, cenário escuro → fundo claro |
+| 1 | preparar | máquina | `enquadramento.json`, `quadro.jpg` | acha o rosto; o fundo combina com o vídeo: cenário claro → fundo claro, escuro → fundo escuro |
 | 2 | transcrever | máquina | `bruto.transcript.json` | faster-whisper large-v3 local; correções do catálogo e do apresentador |
 | 3 | cortar | máquina | `cortes.json`, `cortado.mp4` | "refaz"/"refaça", gaguejo, silêncio; tomada repetida (com roteiro); laço A/B/C até `LIMPO`; suspeitas (`?`) **não** são cortadas |
-| 4 | audio | máquina | `limpo.mp4`, `audio.json` | passa-alta, redução de ruído, compressor, -14 LUFS |
+| 4 | audio | máquina | `limpo.mp4`, `audio.json` | passa-alta, compressor, -14 LUFS (redução de ruído só com `--ruido`) |
 | 5 | legenda | máquina | `legenda.json`, `frases.txt` | transcreve o cortado; o roteiro corrige palavras |
 | 6 | cenas | **você** | `cenas.json` | ver abaixo |
 | 7 | montar | máquina | `reel.mp4`, `reel.cenas.jpg` | template + paleta + logos automáticas |
@@ -86,12 +86,13 @@ Por padrão tudo roda direto. Ligue estes **apenas** se a pessoa pedir com essas
 | "usa o template X" | `--template X` |
 | "usa a paleta Nord/Latte" / "usa o fundo claro" | `--paleta nord\|latte`, `--fundo claro\|escuro` |
 | "não acelera" / "pode passar de 60 s" | `--sem-limite` |
+| "tira o ruído" / "limpa o barulho de fundo" | `--ruido` |
 | "esse pedaço está errado" | `craft corte <pasta> <ini> <fim> "nota"` (tempos do cortado.mp4) |
 
 ## Nunca
 
 - cortar fora das regras (suspeita `?` só sai se a pessoa pedir);
-- trocar template, paleta ou fundo sem pedido;
+- trocar template, paleta ou fundo, ou ligar a redução de ruído, sem pedido;
 - inventar logo, número ou palavra que a pessoa não falou;
 - trabalhar em `/tmp`; imprimir transcrições inteiras com tempo (use `frases.txt` e `grep`);
 - divulgar a ferramenta no vídeo: o reel mostra só a comunidade (selo e `@software_craftsmanship`).

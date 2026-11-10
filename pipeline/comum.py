@@ -78,6 +78,18 @@ def grava_json(p, d):
     Path(p).write_text(json.dumps(d, ensure_ascii=False, indent=1))
 
 
+def escolher_fundo(cenario, regra, pedido="auto"):
+    """fundo que combina com a luz do vídeo: cenário claro → fundo claro, escuro → escuro.
+    Devolve (fundo, motivo). Pedido da pessoa (--fundo) vence a regra."""
+    if pedido in ("claro", "escuro"):
+        return pedido, "pedido (--fundo)"
+    if cenario > regra["claro_acima"]:
+        return "claro", f"cenário claro ({cenario:.2f} > {regra['claro_acima']})"
+    if cenario < regra["escuro_abaixo"]:
+        return "escuro", f"cenário escuro ({cenario:.2f} < {regra['escuro_abaixo']})"
+    return regra["entre"], f"cenário médio ({cenario:.2f}), fica o padrão"
+
+
 def paletas():
     return le_json(TEMA / "paletas.json")
 

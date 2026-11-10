@@ -16,8 +16,9 @@ rosto em menos da metade dos quadros, grava "rosto": null e sai com código 2: o
 agente lê o quadro.jpg e preenche o rosto à mão (e "manual": true), e esta etapa
 passa a só recalcular o resto.
 
-Fundo: luminosidade média do cenário (terço de cima do quadro). Cenário claro pede
-fundo escuro e vice-versa (regra em tema/paletas.json → regra_fundo).
+Fundo: luminosidade média do cenário (terço de cima do quadro). O fundo combina com o
+vídeo: cenário claro → fundo claro, escuro → escuro (regra em tema/paletas.json →
+regra_fundo, função comum.escolher_fundo).
 """
 import argparse
 import json
@@ -26,6 +27,8 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+
+from comum import escolher_fundo
 
 RAIZ = Path(__file__).resolve().parent.parent
 W, H = 1080, 1920
@@ -91,15 +94,7 @@ if meio is None:
     sys.exit("não consegui ler quadros do vídeo")
 
 lum = float(np.mean(lums)) if lums else 0.5
-rf = pal["regra_fundo"]
-if a.fundo != "auto":
-    fundo, motivo = a.fundo, "pedido (--fundo)"
-elif lum > rf["escuro_acima"]:
-    fundo, motivo = "escuro", f"cenário claro ({lum:.2f} > {rf['escuro_acima']})"
-elif lum < rf["claro_abaixo"]:
-    fundo, motivo = "claro", f"cenário escuro ({lum:.2f} < {rf['claro_abaixo']})"
-else:
-    fundo, motivo = rf["entre"], f"cenário médio ({lum:.2f}), fica o padrão"
+fundo, motivo = escolher_fundo(lum, pal["regra_fundo"], a.fundo)
 
 manual = bool(antigo.get("manual")) and antigo.get("rosto")
 confianca = len(medidas) / max(1, len(idx))

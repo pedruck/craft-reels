@@ -1,10 +1,10 @@
 {
- "_leia": "Paletas do tema craft. Cada paleta define a cor de destaque e tem fundo claro e escuro. A etapa 1 escolhe o fundo pela luminosidade do cenário do vídeo bruto (regra_fundo); a paleta só muda se a pessoa pedir. Valores oficiais de Catppuccin (MIT) e Nord (MIT).",
+ "_leia": "Paletas do tema craft. Cada paleta define a cor de destaque e tem fundo claro e escuro. A etapa 1 escolhe o fundo que combina com a luminosidade do cenário do vídeo bruto (regra_fundo: cenário claro → fundo claro, escuro → escuro); a paleta só muda se a pessoa pedir. Valores oficiais de Catppuccin (MIT) e Nord (MIT).",
  "padrao": "mocha",
  "regra_fundo": {
   "cenario": "terço de cima do quadro, média de amostras do vídeo bruto (0 = preto, 1 = branco)",
-  "escuro_acima": 0.55,
-  "claro_abaixo": 0.45,
+  "claro_acima": 0.55,
+  "escuro_abaixo": 0.45,
   "entre": "escuro"
  },
  "fontes": {

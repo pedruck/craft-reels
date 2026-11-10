@@ -11,7 +11,7 @@ agentes de IA (Claude Code, Codex, Cursor…). Um vídeo falado de celular entra
 
 - **Corta** gaguejo, "ééé", silêncio e toda frase que a pessoa marcou com "refaz"/"refaça"; confere cada
   trecho sozinho para não sobrar lasca nem fala repetida. Com o roteiro, escolhe a tomada certa.
-- **Limpa o áudio** e deixa no volume do Instagram (-14 LUFS).
+- **Acerta o áudio** (passa-alta, compressor) e deixa no volume do Instagram (-14 LUFS). Redução de ruído só se você pedir.
 - **Legenda** em pílula, sempre embaixo e nunca sobre o rosto, com as palavras-chave em `{destaque}`.
 - **Ilustra** cada ponto com um visual simples (lista, fluxo, comparação, contador, código, terminal, logo, print).
 - **Mostra a logo** de todo produto ou empresa pública citado.
@@ -51,8 +51,8 @@ Peça ao agente: *"faz o reel desse vídeo: ~/Downloads/video.mp4"*. Ou direto:
 Ele roda até precisar do agente (escrever as cenas), e `./craft run <pasta>` continua. Para roteirizar
 antes de gravar: *"/roteiro um vídeo de 50 s sobre X"*, e depois `--roteiro roteiro.md`.
 
-Por padrão é tudo automático. Aprovar cortes, ver as cenas antes, trocar template, paleta ou fundo e
-passar de 60 s são opções que o agente só usa se você pedir. Agentes: leiam o [`AGENTS.md`](AGENTS.md).
+Por padrão é tudo automático. Aprovar cortes, ver as cenas antes, trocar template, paleta ou fundo,
+ligar a redução de ruído e passar de 60 s são opções que o agente só usa se você pedir. Agentes: leiam o [`AGENTS.md`](AGENTS.md).
 
 ## Templates
 
@@ -67,7 +67,7 @@ passar de 60 s são opções que o agente só usa se você pedir. Agentes: leiam
 | `codigo` | — (novo) | código, refatoração, terminal |
 
 Paletas: **Catppuccin Mocha** (padrão), Catppuccin Latte e Nord, cada uma com fundo claro e escuro. O fundo
-é escolhido pela luminosidade do vídeo: cenário claro pede fundo escuro, e vice-versa.
+é escolhido pela luminosidade do vídeo e combina com ela: cenário claro → fundo claro, cenário escuro → fundo escuro.
 
 ## Como é feito
 

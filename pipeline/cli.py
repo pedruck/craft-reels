@@ -125,10 +125,11 @@ def gate_cortes(P, est):
 
 
 def e4_audio(P, op):
-    out = roda(P, "audio", [sys.executable, PIPE / "audio.py", "cortado.mp4", "limpo.mp4"])
+    out = roda(P, "audio", [sys.executable, PIPE / "audio.py", "cortado.mp4", "limpo.mp4"]
+               + (["--ruido"] if op.get("ruido") else []))
     d = json.loads(out.strip().splitlines()[-1])
     grava_json(P / "audio.json", d)
-    return f"{d['antes_lufs']} LUFS → {d['depois_lufs']} LUFS"
+    return f"{d['antes_lufs']} LUFS → {d['depois_lufs']} LUFS" + (", com redução de ruído" if op.get("ruido") else "")
 
 
 def e5_legenda(P, op):
@@ -223,11 +224,11 @@ def e10_entregar(P, op):
 
 # entradas/saídas/opções de cada etapa (o estado.json usa isto para saber o que refazer)
 ETAPAS = [
-    (1, e1_preparar, ["bruto.mp4"], ["enquadramento.json", "quadro.jpg"], ["fundo", "paleta"]),
+    (1, e1_preparar, ["bruto.mp4"], ["enquadramento.json", "quadro.jpg"], ["fundo", "paleta", "_regra_fundo"]),
     (2, e2_transcrever, ["bruto.mp4", "roteiro.md"], ["bruto.transcript.json"], ["nomes", "apresentador"]),
     (3, e3_cortar, ["bruto.transcript.json", "enquadramento.json", "cortes.json", "roteiro.md"],
      ["cortes.json", "cortado.mp4", "cortado.trechos.json"], ["apresentador"]),
-    (4, e4_audio, ["cortado.mp4"], ["limpo.mp4", "audio.json"], []),
+    (4, e4_audio, ["cortado.mp4"], ["limpo.mp4", "audio.json"], ["ruido", "_audio"]),
     (5, e5_legenda, ["limpo.mp4", "roteiro.md"], ["legenda.json", "frases.txt"], ["nomes", "apresentador"]),
     (6, e6_cenas, ["cenas.json", "legenda.json", "enquadramento.json"], ["cenas.json"], ["template"]),
     (7, e7_montar, ["cenas.json", "limpo.mp4", "legenda.json", "enquadramento.json"], ["reel.mp4", "reel.cenas.jpg"], ["template", "_codigo"]),
@@ -245,6 +246,15 @@ def versao_codigo():
     for f in arquivos:
         h.update(f.read_bytes())
     return h.hexdigest()[:12]
+
+
+def versao_regras():
+    """impressão das regras das etapas 1 e 4: se mudarem, as pastas antigas refazem a etapa"""
+    import hashlib
+    regra = json.dumps(paletas()["regra_fundo"], sort_keys=True).encode()
+    fundo = hashlib.sha1(regra + (PIPE / "preparar.py").read_bytes()).hexdigest()[:12]
+    audio = hashlib.sha1((PIPE / "audio.py").read_bytes()).hexdigest()[:12]
+    return fundo, audio
 
 
 def run(a):
@@ -270,7 +280,10 @@ def run(a):
             op[k] = v
     if a.sem_limite:
         op["sem_limite"] = True
+    if a.ruido:
+        op["ruido"] = True
     op["_codigo"] = versao_codigo()
+    op["_regra_fundo"], op["_audio"] = versao_regras()
     if a.roteiro:
         shutil.copy2(Path(a.roteiro).expanduser(), P / "roteiro.md")
     for g in a.parar_em or []:
@@ -331,6 +344,7 @@ def main(argv=None):
     r.add_argument("--fundo", choices=["auto", "claro", "escuro"], help="só se a pessoa pedir; padrão auto (pelo cenário)")
     r.add_argument("--parar-em", action="append", choices=["cortes", "cenas"], help="só se a pessoa pedir para aprovar")
     r.add_argument("--sem-limite", action="store_true", help="só se a pessoa pedir: não acelera para caber em 60 s")
+    r.add_argument("--ruido", action="store_true", help="só se a pessoa pedir: liga a redução de ruído do áudio")
     r.add_argument("--ate", type=int, help="para depois da etapa N")
     e = sub.add_parser("estado")
     e.add_argument("pasta")

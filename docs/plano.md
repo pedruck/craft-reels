@@ -45,7 +45,7 @@ configurado para puxar correções dele.
 | nossa skill `reel-explainer` | regras de corte ("refaz", gaguejo, silêncio), regras A/B/C (sem lascas, conferência trecho a trecho, corte manual no tempo do bruto), catálogo de logos, correções do Whisper, validador de spec, aceleração sem mudar o tom, armadilhas conhecidas |
 | nossa skill `roteiro-video-curto` | etapa 0, com saída num formato fixo (`roteiro.md`) que a pipeline lê |
 | [video-use](https://github.com/browser-use/video-use) (MIT) | fade de 30 ms em toda emenda; transcrição como interface do agente, imagem só no fim |
-| [video-editing-skill](https://github.com/social-media-skills/video-editing-skill) (MIT) | etapa de áudio: passa-alta 80 Hz, redução de ruído, compressor e -14 LUFS; relatório por vídeo |
+| [video-editing-skill](https://github.com/social-media-skills/video-editing-skill) (MIT) | etapa de áudio: passa-alta 80 Hz, compressor e -14 LUFS (redução de ruído opcional); relatório por vídeo |
 | [ghost-editor](https://github.com/kurbaitaev/ghost-editor) (MIT) | checagens automáticas (rosto coberto, tamanho de legenda, volume) e a página de aprovação de cortes, usada só sob pedido |
 | [open-edits](https://github.com/kevinbadi/open-edits) (MIT) | visual `contador` para número falado; regra de que o visual entra no máximo 0,1 s antes da palavra |
 | ideia nossa | roteiro como gabarito: escolhe a tomada, corrige a legenda e já traz as cenas |
@@ -73,7 +73,7 @@ craft run bruto.mp4 [--roteiro roteiro.md] [--apresentador pedro]
 | 1 | preparar | máquina | `bruto.mp4` → `enquadramento.json`, `quadro.jpg` | o rosto é achado automaticamente (olhos, queixo, centro) e o painel é calculado; se falhar, o agente lê o `quadro.jpg` com régua; o fundo claro ou escuro é escolhido pela luminosidade do cenário |
 | 2 | transcrever | máquina | → `bruto.transcript.json` | faster-whisper large-v3 local, parâmetros fixos; correções do catálogo e do apresentador |
 | 3 | cortar | máquina | → `cortes.json`, `cortado.mp4` | "refaz", gaguejo e silêncio; com roteiro, fica a tomada que bate com ele; laço A/B/C até `LIMPO`; fade de 30 ms nas emendas; suspeitas (`?`) **não** são cortadas, só relatadas |
-| 4 | áudio | máquina | `cortado.mp4` (áudio tratado) | passa-alta 80 Hz, redução de ruído, compressor, -14 LUFS |
+| 4 | áudio | máquina | `cortado.mp4` (áudio tratado) | passa-alta 80 Hz, compressor, -14 LUFS; redução de ruído só se a pessoa pedir (`--ruido`) |
 | 5 | legenda | máquina | → `legenda.json`, `frases.txt` | transcreve o cortado; o roteiro corrige palavras divergentes; palavras duvidosas sem roteiro viram exceção |
 | 6 | cenas | **agente** | `frases.txt` → `cenas.json` | com roteiro, é gerado das sugestões e o agente só revisa; sem roteiro, o agente escreve; uma cena a cada 5–15 s; só os tipos de visual fixos; `craft validar` precisa passar |
 | 7 | montar | máquina | → `reel.mp4`, `cenas.jpg` | logos detectadas pelas menções; recorte de fundo; render HyperFrames com o tema `craft` |
@@ -94,6 +94,7 @@ o que já foi feito; uma etapa só roda de novo se a entrada dela mudou.
 | "quero ver as cenas antes" | `--parar-em cenas` mostra a lista título → visual antes de renderizar |
 | "não acelera" / "pode passar de 60 s" | `--sem-limite` |
 | "usa a paleta Nord" / "usa o fundo claro" | `--paleta latte\|nord`, `--fundo claro\|escuro` |
+| "tira o ruído" | `--ruido` (liga a redução de ruído na etapa 4) |
 | "esse corte está errado" | `craft corte <ini> <fim>` (tempo do cortado, regra C) |
 
 ## Contratos para agentes
@@ -122,12 +123,12 @@ Tudo vem de `tema/paletas.json`. O template não tem cor nem fonte fixa no códi
   | `nord`, azul | Snow Storm `#ECEFF4`, tinta `#2E3440`, destaque `#5E81AC` | Polar Night `#2E3440`, tinta `#ECEFF4`, destaque `#88C0D0` |
 
   Fontes: [Catppuccin](https://github.com/catppuccin/catppuccin) e [Nord](https://www.nordtheme.com/docs/colors-and-palettes). A paleta só muda se a pessoa pedir (`--paleta latte|nord`).
-- **Fundo claro ou escuro: escolhido pela máquina, na etapa 1.** A regra mede a luminosidade média do cenário (o terço de cima do quadro, em amostras do vídeo bruto) e escolhe o fundo que contrasta com ele:
-  - cenário claro (> 0,55) → fundo escuro;
-  - cenário escuro (< 0,45) → fundo claro;
+- **Fundo claro ou escuro: escolhido pela máquina, na etapa 1.** A regra mede a luminosidade média do cenário (o terço de cima do quadro, em amostras do vídeo bruto) e escolhe o fundo que combina com ele, para o vídeo parecer parte do quadro:
+  - cenário claro (> 0,55) → fundo claro;
+  - cenário escuro (< 0,45) → fundo escuro;
   - entre os dois → escuro, o padrão do Mocha.
 
-  Nos três vídeos de teste, o carro (Orca, 0,27) caiu no fundo claro e o quarto (Omarchy 0,61, System 1 0,60) no escuro. O valor e a decisão ficam no `enquadramento.json`. A pessoa pode forçar com `--fundo claro|escuro`.
+  Nos três vídeos de teste, o carro (Orca, 0,27) cai no fundo escuro e o quarto (Omarchy 0,61, System 1 0,60) no claro. O valor e a decisão ficam no `enquadramento.json`. A pessoa pode forçar com `--fundo claro|escuro`.
 - **Cor de destaque sobre fundo escuro:** na pílula da legenda, sobre o vídeo e no editor, usa-se a versão clara do destaque, para manter o contraste.
 - **Templates com o vídeo inteiro** (`bastidores`, `ranking`, `historia`, `destaque`): o fundo muda só os cartões e as chaves, porque o fundo é o próprio vídeo.
 - **Fontes:**

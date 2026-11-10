@@ -181,6 +181,26 @@ class PainelExplainer(unittest.TestCase):
         self.assertLessEqual(PB, VY + VH)
 
 
+class Fundo(unittest.TestCase):
+    """o fundo acompanha a luz do vídeo: cenário claro → fundo claro, escuro → escuro"""
+
+    def test_fundo_combina_com_o_cenario(self):
+        from comum import escolher_fundo, paletas
+        r = paletas()["regra_fundo"]
+        self.assertEqual(escolher_fundo(0.60, r)[0], "claro")     # quarto de parede branca (System 1)
+        self.assertEqual(escolher_fundo(0.27, r)[0], "escuro")    # carro (Orca)
+        self.assertEqual(escolher_fundo(0.50, r)[0], r["entre"])
+        self.assertEqual(escolher_fundo(0.90, r, "escuro")[0], "escuro")   # pedido vence a regra
+
+
+class Audio(unittest.TestCase):
+    def test_reducao_de_ruido_so_quando_pedida(self):
+        import audio
+        self.assertNotIn("afftdn", audio.cadeia(False))
+        self.assertIn("afftdn", audio.cadeia(True))
+        self.assertIn("highpass", audio.cadeia(False))
+
+
 class Paletas(unittest.TestCase):
     def test_cada_paleta_tem_claro_e_escuro_com_as_mesmas_chaves(self):
         p = json.loads((RAIZ / "tema" / "paletas.json").read_text())
